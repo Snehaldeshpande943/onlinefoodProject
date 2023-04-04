@@ -12,7 +12,7 @@ from .utils import detectUser, send_verification_email
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from django.core.exceptions import PermissionDenied
-
+from vendor.models import Vendor
 # Restrict vendor from accessing customer page
 
 def check_role_vendor(user):
@@ -178,7 +178,11 @@ def custDashboard(request):
 @login_required(login_url = 'login')
 @user_passes_test(check_role_vendor)
 def vendorDashboard(request):
-    return render(request, 'accounts/vendorDashboard.html')
+    vendor = Vendor.objects.get(user=request.user)
+    context = {
+      'vendor' : vendor,
+    }
+    return render(request, 'accounts/vendorDashboard.html', context)
 
 def forgot_password(request):
     if request.method == 'POST':
