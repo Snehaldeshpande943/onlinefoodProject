@@ -42,7 +42,7 @@ def vprofile(request):
 
 
 def menu_builder(request):
-      vendor = Vendor.objects.get(user=request.user)
+      vendor = Vendor.objects.get(user=request.user.id)
       categories = Category.objects.filter(vendor=vendor)
       context = {
           'categories': categories,
