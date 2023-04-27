@@ -49,10 +49,11 @@ function onPlaceChanged (){
     });
 
     // loop through the address components and assign other address data
-    for(var i = 0; i<place.address_components.length; i++){
-        for(var j = 0; j<place.address_components[i].types.length; j++){
-           // get country
-           if(place.address_components[i].types[i] == 'country'){
+    console.log(place.address_components);
+    for(var i=0; i<place.address_components.length; i++){
+        for(var j=0; j<place.address_components[i].types.length; j++){
+            // get country
+            if(place.address_components[i].types[j] == 'country'){
                 $('#id_country').val(place.address_components[i].long_name);
             }
             // get state
@@ -64,14 +65,11 @@ function onPlaceChanged (){
                 $('#id_city').val(place.address_components[i].long_name);
             }
             // get pincode
-
             if(place.address_components[i].types[j] == 'postal_code'){
                 $('#id_pin_code').val(place.address_components[i].long_name);
             }else{
                 $('#id_pin_code').val("");
             }
-
-        
         }
     }
 

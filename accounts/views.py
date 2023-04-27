@@ -1,7 +1,6 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
-
 from django.utils.http import urlsafe_base64_decode
 
 from vendor.forms import VendorForm
@@ -36,7 +35,6 @@ def registerUser(request):
     if request.user.is_authenticated:
         messages.warning(request, 'You are already logged in')
         return redirect('dashboard')
-     
     elif request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -59,10 +57,8 @@ def registerUser(request):
             
             mail_subject = 'Please activate your account'
             email_template = 'accounts/emails/account_verification_email.html'
-
             send_verification_email(request, user, mail_subject, email_template)
             messages.success(request, 'Your account has been created successfully')
-            
             return redirect('registerUser')
         else :
             print('invalid form')
@@ -76,7 +72,6 @@ def registerUser(request):
     return render(request, 'accounts/registerUser.html', context)
 
 def registerVendor(request):
-
     if request.user.is_authenticated:
         messages.warning(request, 'You are already logged in')
         return redirect('dashboard')
@@ -108,7 +103,7 @@ def registerVendor(request):
             return redirect('registerVendor')
         else:
             print('invalid form')
-            print(form.errors)
+            print(form.errors, v_form.errors)
 
     else:
 
