@@ -70,7 +70,8 @@
 	<!-- Main Search End -->
 	
 	<!-- Top Restarurants Section Start -->
-	<div class="page-section nopadding cs-nomargin" style="margin-top: 0px;padding-top: 60px;padding-bottom: 0px;margin-bottom: 0px;background: #ffffff;">
+	<div class="page-section nopadding cs-nomargin" style="margin-top: 0px;padding-top: 60px;padding-bottom: 
+	0px;margin-bottom: 0px;background: #ffffff;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -86,9 +87,11 @@
 							<li class="has-border">
 								<figure>
 									{% if vendor.user_profile.profile_picture %}
-									<a href="#"><img src="{{ vendor.user_profile.profile_picture.url }}" class="attachment-full size-full wp-post-image" alt=""></a>
+									<a href="{% url 'vendor_detail' vendor.vendor_slug %}"><img src="{{ vendor.user_profile.profile_picture.url }}" height="125" 
+										class="attachment-full size-full wp-post-image" alt=""></a>
 								    {% else %}
-                                    <a href="#"><img src="{% static 'images/default-profile.png' %}" class="attachment-full size-full wp-post-image" alt=""></a>
+                                    <a href="{% url 'vendor_detail' vendor.vendor_slug %}"><img src="{% static 'images/default-profile.png' %}" height="125"
+										class="attachment-full size-full wp-post-image" alt=""></a>
 									{% endif %}
 								</figure>
 							</li>
@@ -100,8 +103,10 @@
 		</div>
 	</div>
 	<!-- Top Restarurants Section End -->
-	<!-- Choose From Most Popular Listin Start -->
-	<div class="page-section nopadding cs-nomargin" style="margin-top: 0px;padding-top: 60px;padding-bottom: 50px;margin-bottom: 0px;background: #ffffff;">
+
+	<!-- Choose From Most Popular Listing Start -->
+	<div class="page-section nopadding cs-nomargin" style="margin-top: 0px;padding-top: 60px;
+	padding-bottom: 50px;margin-bottom: 0px;background: #ffffff;">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -118,7 +123,7 @@
 								<div class="list-post featured">
 									<div class="img-holder">
 										<figure>
-											<a href="#">
+											<a href="{% url 'vendor_detail' vendor.vendor_slug %}">
 												{% if vendor.user_profile.profile_picture %}
 												<img src="{{ vendor.user_profile.profile_picture.url }}" class="img-thumb wp-post-image" alt="">
 										        {% else %}
@@ -134,12 +139,22 @@
 										
 										<div class="post-title">
 											<h5>
-												<a href="listing-detail.html">{{ vendor }}</a>
+												<a href="{% url 'vendor_detail' vendor.vendor_slug %}">{{ vendor }}</a>
 											</h5>
 										</div>
 										{% if vendor.user_profile.city and vendor.user_profile.state and vendor.user_profile.pin_code %}
 										<span>{{ vendor.user_profile.city}}, {{vendor.user_profile.state}}, {{vendor.user_profile.pin_code}}</span>
 									    {% endif %}
+
+										{% if vendor.kms %}
+											<br>
+											<span><small><b>{{vendor.kms}} km </b>away</small></span>
+										{% endif %}
+									</div>
+									<div class="list-option">
+										<a href="javascript:void(0);" class="shortlist-btn" data-toggle="modal" data-target="#sign-in">
+											<i class="icon-heart-o"></i>
+										</a>
 									</div>
 									
 								</div>
