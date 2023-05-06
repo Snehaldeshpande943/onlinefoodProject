@@ -48,6 +48,8 @@ def registerUser(request):
             #user.role = User.CUSTOMER
             #user.save()
 
+            # Create the user
+
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             username = form.cleaned_data['username']
