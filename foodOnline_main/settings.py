@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast =bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['139.144.5.134' , '127.0.0.1', 'foodmarket.bio', 'www.foodmarket.bio']
 
 
 # Application definition
@@ -169,7 +169,7 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
-DEFAULT_FROM_MAIL = 'FoodOnline MarketPlace <snehaldeshpande943@gmail.com>'
+DEFAULT_FROM_MAIL = 'FoodOnline MarketPlace <developer.foodmarket@gmail.com>'
 
 GOOGLE_API_KEY = config('GOOGLE_API_KEY')
 
